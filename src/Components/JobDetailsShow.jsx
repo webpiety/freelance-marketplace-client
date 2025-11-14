@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../Auth/AuthProvider";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const JobDetailsShow = () => {
   const { user } = use(AuthContext);
@@ -16,6 +17,7 @@ const JobDetailsShow = () => {
       buyerEmail: jobsDetails.userEmail,
       buyerImage: jobsDetails.coverImage,
       budget: jobsDetails.budget,
+      buyer_name: jobsDetails.postedBy,
       status: jobsDetails.status,
       createdDate: jobsDetails.createdDate,
       user_email: user.email,
@@ -25,11 +27,16 @@ const JobDetailsShow = () => {
       .post("http://localhost:2173/myTasks", newTask)
       .then((res) => {
         console.log("Inserted:", res.data);
+        toast.success("Successfully applied for the job");
       })
-      .catch((err) => console.log("Error:", err));
+      .catch((err) => {
+        console.log("Error:", err);
+        toast("Already added the job");
+      });
   };
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <div class="max-w-5xl mx-auto mt-20 p-6 bg-white rounded-2xl shadow-lg border border-gray-100 mb-16">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-4">
           <div>
