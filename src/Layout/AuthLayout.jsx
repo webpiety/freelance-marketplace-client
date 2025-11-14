@@ -1,14 +1,20 @@
 import React from "react";
 import { Outlet } from "react-router";
+import Header from "../Components/Header";
+import MyFooter from "../Components/MyFooter";
 
 const AuthLayout = () => {
   return (
     <div>
-      <header></header>
+      <header>
+        <Header></Header>
+      </header>
       <main>
         <Outlet></Outlet>
       </main>
-      <Footer></Footer>
+      <footer>
+        <MyFooter></MyFooter>
+      </footer>
     </div>
   );
 };
