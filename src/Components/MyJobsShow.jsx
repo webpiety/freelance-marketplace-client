@@ -8,35 +8,31 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
     setMyTasks(initialTasks);
   }, [initialTasks]);
 
-  const handleRemove = (_id) => {
-    fetch(`http://localhost:2173/myTasks/${_id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount) {
-          const remainingTasks = myTasks.filter((myTask) => myTask._id !== _id);
-          setMyTasks(remainingTasks);
-          toast.success("Delete the job successfully");
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        toast("Not deleted");
+  const handleRemove = async (_id) => {
+    try {
+      const res = await fetch(`http://localhost:2173/myTasks/${_id}`, {
+        method: "DELETE",
       });
-  };
-  const handleDone = (_id) => {
-    fetch(`http://localhost:2173/myTasks/${_id}`, { method: "DELETE" })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount) {
-          const remainingTasks = myTasks.filter((task) => task._id !== _id);
-          setMyTasks(remainingTasks);
-          toast.success("Task completed and removed permanently");
-        }
-      });
+      const data = await res.json();
+
+      if (data.deletedCount) {
+        const remainingTasks = myTasks.filter((task) => task._id !== _id);
+        setMyTasks(remainingTasks);
+        toast.success(
+          " Successfully complete and Deleted the job successfully"
+        );
+      } else {
+        toast.error("Task not found");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Could not delete task");
+    }
   };
 
+  const handleDone = (_id) => {
+    handleRemove(_id); // same as remove
+  };
   return (
     <div className="max-w-[1300px] mx-auto">
       <Toaster position="top-center" reverseOrder={false} />

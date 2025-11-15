@@ -1,9 +1,16 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Auth/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const AddJobShow = () => {
+  const [currentDate, setCurrentDate] = useState("");
   const { user } = use(AuthContext);
+
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+    setCurrentDate(today);
+  }, []);
+
   const handleAddJob = (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -18,6 +25,7 @@ const AddJobShow = () => {
       title,
       category,
       summary,
+      coverImage,
       budget,
       createdDate,
       status: "Pending",
@@ -33,7 +41,7 @@ const AddJobShow = () => {
       .then((data) => {
         console.log("NEW", data);
         toast.success("Job add successful");
-        e.target.reset;
+        e.target.reset();
       })
       .catch((error) => {
         console.log(error);
@@ -50,6 +58,7 @@ const AddJobShow = () => {
           <div>
             <label class="block font-semibold mb-1">Job Title</label>
             <input
+              required
               type="text"
               name="title"
               placeholder="Full Stack Developer"
@@ -63,6 +72,18 @@ const AddJobShow = () => {
               type="text"
               name="postedBy"
               placeholder="Rashedul Islam"
+              value={user.displayName}
+              class="w-full border p-3 rounded-md"
+            />
+          </div>
+
+          <div>
+            <label class="block font-semibold mb-1">Email</label>
+            <input
+              type="email"
+              name="postedBy"
+              placeholder="Rashedul Islam"
+              value={user.email}
               class="w-full border p-3 rounded-md"
             />
           </div>
@@ -70,6 +91,7 @@ const AddJobShow = () => {
           <div>
             <label class="block font-semibold mb-1">Image URL</label>
             <input
+              required
               type="url"
               name="coverImage"
               placeholder="httpd://www.image.com"
@@ -79,17 +101,24 @@ const AddJobShow = () => {
 
           <div>
             <label class="block font-semibold mb-1">Category</label>
-            <input
-              type="text"
+            <select
+              className="w-full py-4 border-2 border-gray-400"
+              id="category"
               name="category"
-              placeholder="Full Stack"
-              class="w-full border p-3 rounded-md"
-            />
+            >
+              <option value="">--Select a category--</option>
+              <option value="web-development">Web Development</option>
+              <option value="design">Design</option>
+              <option value="writing">Writing</option>
+              <option value="marketing">Marketing</option>
+              <option value="other">Other</option>
+            </select>
           </div>
 
           <div>
             <label class="block font-semibold mb-1">Job Summary</label>
             <textarea
+              required
               name="summary"
               placeholder="Write a short summary..."
               class="w-full border p-3 rounded-md"
@@ -100,6 +129,7 @@ const AddJobShow = () => {
           <div>
             <label class="block font-semibold mb-1">Budget ($)</label>
             <input
+              required
               type="number"
               name="budget"
               placeholder="100"
@@ -108,11 +138,12 @@ const AddJobShow = () => {
           </div>
 
           <div>
-            <label class="block font-semibold mb-1">Created Date</label>
+            <label class="block font-semibold mb-1">Date</label>
             <input
               type="date"
               name="createdDate"
               placeholder="2025-11-06"
+              value={currentDate}
               class="w-full border p-3 rounded-md"
             />
           </div>

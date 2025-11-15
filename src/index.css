@@ -65,3 +65,24 @@ body {
   border-top-color: #ff0088;
   will-change: transform;
 }
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.gentle-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* subtle glow for better pop */
+.text-glow {
+  text-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
+}

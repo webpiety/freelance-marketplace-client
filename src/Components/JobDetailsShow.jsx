@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../Auth/AuthProvider";
 import axios from "axios";
@@ -8,10 +8,10 @@ const JobDetailsShow = () => {
   const { user } = use(AuthContext);
   const jobsDetails = useLoaderData();
   console.log("Job", jobsDetails);
+  const jobModalRef = useRef(null);
 
   const handleApplyJob = () => {
     const newTask = {
-      _id: jobsDetails._id,
       jobApplyId: jobsDetails._id,
       title: jobsDetails.title,
       buyerEmail: jobsDetails.userEmail,
@@ -31,9 +31,46 @@ const JobDetailsShow = () => {
       })
       .catch((err) => {
         console.log("Error:", err);
-        toast("Already added the job");
+        toast("Already added the job or You cant apply your own job");
       });
   };
+  const handleJobModalOpen = () => {
+    jobModalRef.current.showModal();
+  };
+  const handleUpdateJob = (e) => {
+    e.preventDefault();
+    const title = e.target.title.value;
+    const category = e.target.category.value;
+    const summary = e.target.summary.value;
+    const coverImage = e.target.coverImage.value;
+    console.log(title, category, summary, coverImage);
+    const updateJob = {
+      title,
+      category,
+      summary,
+      coverImage,
+    };
+
+    fetch(`http://localhost:2173/jobs/${jobsDetails._id}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(updateJob),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Update", data);
+        if (data.modifiedCount) {
+          toast.success("Successfully update your job");
+          jobModalRef.current.close();
+        }
+        e.target.reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Update is not successful");
+      });
+  };
+
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />
@@ -132,10 +169,107 @@ const JobDetailsShow = () => {
         <div class="mt-10 flex flex-col sm:flex-row gap-4">
           <button
             onClick={handleApplyJob}
-            class="w-full sm:w-auto flex-1 py-3 rounded-xl bg-gradient-to-r from-primary to-emerald-500 text-white font-semibold shadow-md hover:scale-[1.02] transition-transform duration-300"
+            class=" sm:w-auto flex-1 py-3 rounded-xl bg-gradient-to-r from-primary to-emerald-500 text-white font-semibold shadow-md hover:scale-[1.02] transition-transform duration-300"
           >
             Apply for this Job
           </button>
+          {user.email === jobsDetails.userEmail && (
+            <div>
+              <button
+                onClick={handleJobModalOpen}
+                class=" sm:w-auto flex-1 py-3 px-8 rounded-xl bg-gradient-to-r from-primary to-emerald-500 text-white font-semibold shadow-md hover:scale-[1.02] transition-transform duration-300"
+              >
+                Update Job
+              </button>
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+              <dialog
+                ref={jobModalRef}
+                className="modal modal-bottom sm:modal-middle"
+              >
+                <div className="modal-box">
+                  <h3
+                    className="font-bold text-lg text-center gentle-float text-glow
+                 bg-gradient-to-r from-purple-500 via-pink-500 to-red-400
+                 bg-clip-text text-transparent transform transition-all
+                 duration-300 hover:scale-105"
+                  >
+                    Update The Job
+                  </h3>
+                  <form onSubmit={handleUpdateJob} class="space-y-4">
+                    <div>
+                      <label class="block font-semibold mb-1">Job Title</label>
+                      <input
+                        required
+                        defaultValue={jobsDetails.title}
+                        type="text"
+                        name="title"
+                        placeholder="Full Stack Developer"
+                        class="w-full border p-3 rounded-md focus:outline-none focus:ring focus:ring-blue-300"
+                      />
+                    </div>
+
+                    <div>
+                      <label class="block font-semibold mb-1">Image URL</label>
+                      <input
+                        required
+                        defaultValue={jobsDetails.coverImage}
+                        type="url"
+                        name="coverImage"
+                        placeholder="httpd://www.image.com"
+                        class="w-full border p-3 rounded-md"
+                      />
+                    </div>
+
+                    <div>
+                      <label class="block font-semibold mb-1">Category</label>
+                      <select
+                        className="w-full py-4 border-2 border-gray-400"
+                        id="category"
+                        name="category"
+                      >
+                        <option value="">--Select a category--</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="design">Design</option>
+                        <option value="writing">Writing</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="block font-semibold mb-1">
+                        Job Summary
+                      </label>
+                      <textarea
+                        required
+                        defaultValue={jobsDetails.summary}
+                        name="summary"
+                        placeholder="Write a short summary..."
+                        class="w-full border p-3 rounded-md"
+                        rows="3"
+                      ></textarea>
+                    </div>
+
+                    <button
+                      type="submit"
+                      class="w-full bg-primary text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700 transition"
+                    >
+                      Update
+                    </button>
+                  </form>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button className="btn bg-accent text-white">
+                        Cancel
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            </div>
+          )}
         </div>
       </div>
     </div>
