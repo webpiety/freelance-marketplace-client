@@ -10,7 +10,6 @@ const MyFooter = () => {
   return (
     <div className="bg-gray-950 text-gray-300 pt-16 pb-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-4 gap-10">
-        {/* --- Brand Section --- */}
         <div>
           <h2 className="text-2xl font-bold text-white mb-4">
             Freelance Marketplace
@@ -35,8 +34,6 @@ const MyFooter = () => {
             </a>
           </div>
         </div>
-
-        {/* --- Quick Links --- */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4 relative after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-10 after:h-[2px] after:bg-blue-500">
             Quick Links
@@ -69,8 +66,6 @@ const MyFooter = () => {
             </li>
           </ul>
         </div>
-
-        {/* --- Resources --- */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4 relative after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-10 after:h-[2px] after:bg-blue-500">
             Resources
@@ -98,8 +93,6 @@ const MyFooter = () => {
             </li>
           </ul>
         </div>
-
-        {/* --- Newsletter --- */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4 relative after:content-[''] after:absolute after:left-0 after:bottom-[-6px] after:w-10 after:h-[2px] after:bg-blue-500">
             Stay Updated
@@ -123,8 +116,6 @@ const MyFooter = () => {
           </form>
         </div>
       </div>
-
-      {/* --- Divider --- */}
       <div className="border-t border-gray-800 mt-10 pt-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} FreelanceHub. All Rights Reserved.
       </div>

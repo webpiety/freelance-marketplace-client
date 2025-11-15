@@ -24,7 +24,11 @@ const JobDetailsShow = () => {
     };
     console.log("newTask", newTask);
     axios
-      .post("http://localhost:2173/myTasks", newTask)
+      .post(
+        "http://localhost:2173/myTasks",
+        { authorization: `Bearer ${user.accessToken}` },
+        newTask
+      )
       .then((res) => {
         console.log("Inserted:", res.data);
         toast.success("Successfully applied for the job");
@@ -53,7 +57,10 @@ const JobDetailsShow = () => {
 
     fetch(`http://localhost:2173/jobs/${jobsDetails._id}`, {
       method: "PATCH",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${user.accessToken}`,
+      },
       body: JSON.stringify(updateJob),
     })
       .then((res) => res.json())
@@ -181,7 +188,6 @@ const JobDetailsShow = () => {
               >
                 Update Job
               </button>
-              {/* Open the modal using document.getElementById('ID').showModal() method */}
 
               <dialog
                 ref={jobModalRef}
@@ -260,7 +266,6 @@ const JobDetailsShow = () => {
                   </form>
                   <div className="modal-action">
                     <form method="dialog">
-                      {/* if there is a button in form, it will close the modal */}
                       <button className="btn bg-accent text-white">
                         Cancel
                       </button>

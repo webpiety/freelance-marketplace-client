@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Header from "../Components/Header";
 import MyFooter from "../Components/MyFooter";
 import AllJobsShow from "../Components/AllJobsShow";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const AllJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const { user } = use(AuthContext);
+  console.log("user", user.accessToken);
 
   useEffect(() => {
-    fetch("http://localhost:2173/jobs")
+    fetch("http://localhost:2173/jobs", {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.error(err));

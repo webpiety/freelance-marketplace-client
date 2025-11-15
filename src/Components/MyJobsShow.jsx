@@ -31,14 +31,13 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
   };
 
   const handleDone = (_id) => {
-    handleRemove(_id); // same as remove
+    handleRemove(_id);
   };
   return (
     <div className="max-w-[1300px] mx-auto">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="overflow-x-auto">
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
               <th>S/L</th>

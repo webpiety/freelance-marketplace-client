@@ -43,9 +43,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-50 bg-white/10 backdrop-blur-md border-b border-black/10">
       <div className="navbar max-w-[1300px] mx-auto bg-transparent px-4 py-6 sm:px-6">
-        {/* Navbar Start */}
         <div className="navbar-start">
-          {/* Mobile Menu Button */}
           <div className="dropdown">
             <button
               tabIndex={0}
@@ -67,8 +65,6 @@ const Header = () => {
                 />
               </svg>
             </button>
-
-            {/* Dropdown Menu for Mobile */}
             <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-white/60 backdrop-blur-md border border-black/10 rounded-box mt-3 w-52 p-2 shadow text-black"
@@ -76,8 +72,6 @@ const Header = () => {
               {link}
             </ul>
           </div>
-
-          {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
               className="w-[90px] h-10 object-contain"
@@ -86,13 +80,9 @@ const Header = () => {
             />
           </Link>
         </div>
-
-        {/* Navbar Center (Desktop Links) */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-black">{link}</ul>
         </div>
-
-        {/* Navbar End */}
         <div className="navbar-end gap-3">
           <div className="relative inline-block group">
             <p className="bg-primary rounded-full p-1">

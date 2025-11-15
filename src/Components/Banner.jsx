@@ -59,12 +59,10 @@ const Banner = () => {
             backgroundPosition: "center",
           }}
         >
-          {/* Overlay */}
           <div className="absolute inset-0 bg-[#0F172A]/70"></div>
 
           {index === current && (
             <div className="relative z-20 px-4 sm:px-6 md:px-10 max-w-3xl flex flex-col items-center justify-center h-full">
-              {/* Heading with continuous animation */}
               <h1
                 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   animate ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -72,8 +70,6 @@ const Banner = () => {
               >
                 {ban.heading}
               </h1>
-
-              {/* Subheading with delayed animation */}
               <p
                 className={`mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-gray-200 transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
                   animate ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -81,8 +77,6 @@ const Banner = () => {
               >
                 {ban.subheading}
               </p>
-
-              {/* Button with gentle pulsing */}
               <button
                 className={`mt-6 sm:mt-8 bg-[#0ea5e9] hover:bg-[#0284c7] text-white font-semibold px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 rounded-md shadow-md text-sm sm:text-base md:text-lg transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-300 ${
                   animate ? "opacity-100 scale-100" : "opacity-0 scale-95"
@@ -94,8 +88,6 @@ const Banner = () => {
           )}
         </div>
       ))}
-
-      {/* Dots */}
       <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-30">
         {banner.map((_, i) => (
           <div

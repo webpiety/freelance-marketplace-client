@@ -11,17 +11,17 @@ const Register = () => {
 
   const HandleSignUp = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const password = form.password.value;
-    const photo = form.photo.value;
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const photo = e.target.photoURL.value;
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(result.user);
 
-        // Wait for updateUser to finish before proceeding
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             toast.success("User registered successfully!");
@@ -58,7 +58,7 @@ const Register = () => {
           photo: result.user.photoURL,
         };
         toast.success("User registered successfully!");
-        // Save user to backend
+
         fetch("http://localhost:2173/users", {
           method: "POST",
           headers: {
@@ -69,7 +69,7 @@ const Register = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log("User saved:", data);
-            // ✅ Redirect user back to previous page or home
+
             navigate(from, { replace: true });
           });
       })
@@ -80,7 +80,6 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen relative">
-      {/* Place Toaster here at the top level of this page */}
       <Toaster position="top-center" reverseOrder={false} />
 
       <div
@@ -101,7 +100,6 @@ const Register = () => {
         </p>
 
         <form onSubmit={HandleSignUp} className="space-y-6">
-          {/* Name */}
           <div className="relative">
             <input
               placeholder="Mr. Smith"
@@ -119,7 +117,6 @@ const Register = () => {
             </label>
           </div>
 
-          {/* Photo URL */}
           <div className="relative">
             <input
               placeholder="https://www.image.com"
@@ -137,7 +134,6 @@ const Register = () => {
             </label>
           </div>
 
-          {/* Email */}
           <div className="relative">
             <input
               placeholder="john@example.com"
@@ -155,7 +151,6 @@ const Register = () => {
             </label>
           </div>
 
-          {/* Password */}
           <div className="relative">
             <input
               placeholder="Password"

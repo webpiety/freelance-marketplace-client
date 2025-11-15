@@ -35,7 +35,6 @@ const Login = () => {
           photo: result.user.photoURL,
         };
 
-        // Save user to backend
         fetch("http://localhost:2173/users", {
           method: "POST",
           headers: {
@@ -46,7 +45,6 @@ const Login = () => {
           .then((res) => res.json())
           .then((data) => {
             console.log("User saved:", data);
-            // ✅ Redirect user back to previous page or home
             navigate(from, { replace: true });
           });
       })

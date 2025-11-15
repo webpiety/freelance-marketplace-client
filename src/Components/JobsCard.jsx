@@ -1,4 +1,3 @@
-import { div } from "framer-motion/client";
 import React from "react";
 
 const JobsCard = ({ job }) => {
@@ -10,7 +9,6 @@ const JobsCard = ({ job }) => {
              hover:shadow-lg hover:shadow-black/10 hover:-translate-y-1 hover:scale-[1.02]
              flex flex-col justify-between h-full"
     >
-      {/* Top Section */}
       <div>
         <div className="flex gap-4">
           <div>
@@ -46,8 +44,6 @@ const JobsCard = ({ job }) => {
           {summary.split(" ").slice(0, 30).join(" ")}...
         </p>
       </div>
-
-      {/* Bottom Section (Button) */}
       <div className="mt-4">
         <button className="btn btn-outline btn-info w-full">
           View Details

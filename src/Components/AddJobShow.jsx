@@ -34,7 +34,10 @@ const AddJobShow = () => {
     };
     fetch("http://localhost:2173/jobs", {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${user.accessToken}`,
+      },
       body: JSON.stringify(newJob),
     })
       .then((res) => res.json())
