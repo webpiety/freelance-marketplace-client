@@ -26,7 +26,7 @@ const Register = () => {
           .then(() => {
             toast.success("User registered successfully!");
 
-            fetch("http://localhost:2173/users", {
+            fetch("https://freelance-marketplace-server-six.vercel.app/users", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -59,7 +59,7 @@ const Register = () => {
         };
         toast.success("User registered successfully!");
 
-        fetch("http://localhost:2173/users", {
+        fetch("https://freelance-marketplace-server-six.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

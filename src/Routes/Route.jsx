@@ -57,7 +57,10 @@ const router = createBrowserRouter([
   },
   {
     path: "/jobs/:id",
-    loader: ({ params }) => fetch(`http://localhost:2173/jobs/${params.id}`),
+    loader: ({ params }) =>
+      fetch(
+        `https://freelance-marketplace-server-six.vercel.app/jobs/${params.id}`
+      ),
     element: (
       <PrivateRoute>
         <Suspense

@@ -8,7 +8,7 @@ const Home = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:2173/jobs/latest")
+    fetch("https://freelance-marketplace-server-six.vercel.app/jobs/latest")
       .then((res) => res.json())
       .then((data) => setJobs(data))
       .catch((err) => console.error(err));

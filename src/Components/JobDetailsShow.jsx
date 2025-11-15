@@ -25,7 +25,7 @@ const JobDetailsShow = () => {
     console.log("newTask", newTask);
     axios
       .post(
-        "http://localhost:2173/myTasks",
+        "https://freelance-marketplace-server-six.vercel.app/myTasks",
         // { authorization: `Bearer ${user.accessToken}` },
         newTask
       )
@@ -55,14 +55,17 @@ const JobDetailsShow = () => {
       coverImage,
     };
 
-    fetch(`http://localhost:2173/jobs/${jobsDetails._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        // authorization: `Bearer ${user.accessToken}`,
-      },
-      body: JSON.stringify(updateJob),
-    })
+    fetch(
+      `https://freelance-marketplace-server-six.vercel.app/jobs/${jobsDetails._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          // authorization: `Bearer ${user.accessToken}`,
+        },
+        body: JSON.stringify(updateJob),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("Update", data);

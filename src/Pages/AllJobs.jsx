@@ -10,7 +10,7 @@ const AllJobs = () => {
   console.log("user", user.accessToken);
 
   useEffect(() => {
-    fetch("http://localhost:2173/jobs", {
+    fetch("https://freelance-marketplace-server-six.vercel.app/jobs", {
       headers: {
         // authorization: `Bearer ${user.accessToken}`,
       },

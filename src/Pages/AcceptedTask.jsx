@@ -9,7 +9,7 @@ const AcceptedTask = () => {
   const { user } = use(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:2173/myTasks", {
+    fetch("https://freelance-marketplace-server-six.vercel.app/myTasks", {
       // authorization: `Bearer ${user.accessToken}`,
     })
       .then((res) => res.json())

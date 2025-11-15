@@ -1,16 +1,17 @@
-# React + Vite
+# TITLE: FREELANCE MARKET PLACE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Link:
+Server: https://freelance-marketplace-server-six.vercel.app/
+Client: https://freelance-work-place.firebaseapp.com/
 
-Currently, two official plugins are available:
+Key Points:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Delivered fast, accurate solutions to user problems with a strong focus on clarity and customer satisfaction.
 
-## React Compiler
+# Provided step-by-step technical guidance, especially in React, MongoDB, APIs, and debugging complex errors.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Helped users improve productivity through clear explanations, optimized code snippets, and practical best-practice advice.
 
-## Expanding the ESLint configuration
+# Responded to diverse queries—troubleshooting, code review, UI/UX suggestions—with patience and a solution-oriented mindset.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Maintained a professional, supportive tone that encouraged learning and long-term improvement.

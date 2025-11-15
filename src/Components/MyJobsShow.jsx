@@ -11,9 +11,12 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
 
   const handleRemove = async (_id) => {
     try {
-      const res = await fetch(`http://localhost:2173/myTasks/${_id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `https://freelance-marketplace-server-six.vercel.app/myTasks/${_id}`,
+        {
+          method: "DELETE",
+        }
+      );
       const data = await res.json();
 
       if (data.deletedCount) {

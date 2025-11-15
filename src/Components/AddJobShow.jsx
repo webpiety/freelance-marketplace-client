@@ -32,7 +32,7 @@ const AddJobShow = () => {
       userEmail: user.email,
       postedBy: user.displayName,
     };
-    fetch("http://localhost:2173/jobs", {
+    fetch("https://freelance-marketplace-server-six.vercel.app/jobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

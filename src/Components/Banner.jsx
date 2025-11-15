@@ -23,7 +23,7 @@ const Banner = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:2173/banner")
+    fetch("https://freelance-marketplace-server-six.vercel.app/banner")
       .then((res) => res.json())
       .then((data) => {
         setBanner(data);

@@ -35,7 +35,7 @@ const Login = () => {
           photo: result.user.photoURL,
         };
 
-        fetch("http://localhost:2173/users", {
+        fetch("https://freelance-marketplace-server-six.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
