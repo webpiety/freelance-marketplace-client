@@ -12,7 +12,7 @@ const AllJobs = () => {
   useEffect(() => {
     fetch("http://localhost:2173/jobs", {
       headers: {
-        authorization: `Bearer ${user.accessToken}`,
+        // authorization: `Bearer ${user.accessToken}`,
       },
     })
       .then((res) => res.json())

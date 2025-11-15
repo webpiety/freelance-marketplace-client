@@ -36,7 +36,7 @@ const AddJobShow = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${user.accessToken}`,
+        // authorization: `Bearer ${user.accessToken}`,
       },
       body: JSON.stringify(newJob),
     })

@@ -10,7 +10,7 @@ const AcceptedTask = () => {
 
   useEffect(() => {
     fetch("http://localhost:2173/myTasks", {
-      authorization: `Bearer ${user.accessToken}`,
+      // authorization: `Bearer ${user.accessToken}`,
     })
       .then((res) => res.json())
       .then((data) => setMyJobs(data));

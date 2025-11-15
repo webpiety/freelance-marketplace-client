@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 const MyJobsShow = ({ myJobs: initialTasks }) => {
   const [myTasks, setMyTasks] = useState(initialTasks);
+  console.log;
 
   useEffect(() => {
     setMyTasks(initialTasks);
@@ -18,9 +19,7 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
       if (data.deletedCount) {
         const remainingTasks = myTasks.filter((task) => task._id !== _id);
         setMyTasks(remainingTasks);
-        toast.success(
-          " Successfully complete and Deleted the job successfully"
-        );
+        toast.success("Successfully Completed or Delete the job successfully");
       } else {
         toast.error("Task not found");
       }
@@ -31,7 +30,7 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
   };
 
   const handleDone = (_id) => {
-    handleRemove(_id);
+    handleRemove(_id); // same as remove
   };
   return (
     <div className="max-w-[1300px] mx-auto">
@@ -49,19 +48,16 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
               <th>Actions</th>
             </tr>
           </thead>
-          {myTasks.map((task, index) => (
-            <tbody>
-              {/* row 1 */}
+
+          <tbody>
+            {myTasks.map((task, index) => (
               <tr key={task._id}>
                 <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
-                        <img
-                          src={task.buyerImage}
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={task.buyerImage} alt="" />
                       </div>
                     </div>
                     <div>
@@ -96,14 +92,14 @@ const MyJobsShow = ({ myJobs: initialTasks }) => {
                   </button>
                   <button
                     onClick={() => handleRemove(task._id)}
-                    className="btn btn-outline btn-info hover:text-white hover:bg-accent"
+                    className="btn btn-outline btn-info"
                   >
                     Remove
                   </button>
                 </td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
       </div>
     </div>

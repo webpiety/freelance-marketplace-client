@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:wght@100..900&display=swap");
-@plugin "daisyui";
-@import "tailwindcss";
 
-/* 🌈 Define your own theme colors as CSS variables */
+@import "tailwindcss";
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=night] *));
+
 :root {
   --color-primary: #0ea5e9;
   --color-secondary: #9333ea;
@@ -12,7 +17,6 @@
   --color-base-200: #555b66;
 }
 
-/* 🌟 Apply those variables to Tailwind/DaisyUI components manually */
 .btn-primary {
   background-color: var(--color-primary) !important;
   color: #fff !important;
@@ -39,7 +43,6 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-/* Completely hide scrollbar */
 .scrollbar-hide {
   -ms-overflow-style: none; /* IE & Edge */
   scrollbar-width: none; /* Firefox */
@@ -82,7 +85,6 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* subtle glow for better pop */
 .text-glow {
   text-shadow: 0 6px 18px rgba(99, 102, 241, 0.12);
 }

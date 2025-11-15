@@ -26,7 +26,7 @@ const JobDetailsShow = () => {
     axios
       .post(
         "http://localhost:2173/myTasks",
-        { authorization: `Bearer ${user.accessToken}` },
+        // { authorization: `Bearer ${user.accessToken}` },
         newTask
       )
       .then((res) => {
@@ -59,7 +59,7 @@ const JobDetailsShow = () => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
-        authorization: `Bearer ${user.accessToken}`,
+        // authorization: `Bearer ${user.accessToken}`,
       },
       body: JSON.stringify(updateJob),
     })
